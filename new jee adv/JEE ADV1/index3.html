@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JEE Advanced 2026 - AIITS Part Test II</title>
+    <style>
+        :root { --primary: #004b8d; --success: #2d8a2d; --danger: #d93025; --gray: #f4f4f4; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; background: #e5e5e5; display: flex; flex-direction: column; height: 100vh; }
+        header { background: var(--primary); color: white; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; }
+        .nav-tabs { background: #fff; display: flex; border-bottom: 2px solid #ddd; }
+        .tab { padding: 12px 25px; cursor: pointer; font-weight: bold; border-right: 1px solid #ddd; transition: 0.3s; }
+        .tab.active { background: var(--primary); color: white; }
+        .main-content { display: flex; flex: 1; overflow: hidden; }
+        .question-area { flex: 3; padding: 25px; background: white; overflow-y: auto; border-right: 2px solid #ddd; }
+        .sidebar { flex: 1; padding: 15px; background: #fff; display: flex; flex-direction: column; }
+        .q-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 15px; }
+        .q-num { width: 40px; height: 40px; border: 1px solid #ccc; display: flex; align-items: center; justify-content: center; cursor: pointer; border-radius: 4px; font-size: 0.9rem; }
+        .q-num.answered { background: var(--success); color: white; border-color: var(--success); }
+        .q-num.current { border: 2px solid var(--primary); font-weight: bold; }
+        .controls { padding: 15px; background: white; border-top: 2px solid #ddd; display: flex; justify-content: space-between; }
+        .btn { padding: 10px 20px; border: none; cursor: pointer; border-radius: 4px; font-weight: bold; }
+        .btn-save { background: var(--success); color: white; }
+        .btn-submit { background: var(--danger); color: white; }
+        .result-screen { display: none; padding: 40px; text-align: center; background: white; height: 100%; overflow-y: auto; }
+        .correct-ans { color: var(--success); font-weight: bold; margin-top: 5px; display: none; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="test-title">JEE (Advanced)-2026 | AIITS-PT-II (Paper-1)</div>
+    <div id="timer">180:00</div>
+</header>
+
+<div class="nav-tabs">
+    <div class="tab active" onclick="switchSubject('Physics')">Physics</div>
+    <div class="tab" onclick="switchSubject('Chemistry')">Chemistry</div>
+    <div class="tab" onclick="switchSubject('Mathematics')">Mathematics</div>
+</div>
+
+<div class="main-content" id="test-view">
+    <div class="question-area">
+        <div id="q-content">
+            <h3 id="q-title">Question 1</h3>
+            <div id="q-text">Loading question...</div>
+            <div id="options-container"></div>
+            <div id="correct-ans-display" class="correct-ans">Correct Answer: <span id="ans-val"></span></div>
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <div style="font-weight:bold; margin-bottom:10px;">Question Palette</div>
+        <div class="q-grid" id="q-grid"></div>
+        <hr style="width:100%; margin: 20px 0;">
+        <button class="btn btn-submit" onclick="submitTest()">SUBMIT TEST</button>
+    </div>
+</div>
+
+<div class="result-screen" id="result-view">
+    <h2>Test Summary</h2>
+    <div id="score-details" style="font-size: 1.2rem; margin: 20px;"></div>
+    <button class="btn btn-save" onclick="location.reload()">Restart Test</button>
+</div>
+
+<div class="controls" id="control-bar">
+    <button class="btn" style="background:#ddd" onclick="prevQuestion()">Previous</button>
+    <button class="btn btn-save" onclick="saveAndNext()">Save & Next</button>
+</div>
+
+<!-- Load external JS -->
+<script src="app.js"></script>
+</body>
+</html>
